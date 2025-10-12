@@ -35,3 +35,39 @@ git merge         # Merge branches
 # Reset/Change the Remote Origin URL
 git remote set-url origin git@github.com:yourusername/your-repo.git
 ```
+
+### Create and Switch Branches
+```
+# Create a new branch
+git branch feature-branch-name
+
+# Switch to the new branch
+git checkout feature-branch-name
+
+# Create and switch in one command
+git checkout -b feature-branch-name
+```
+
+### Delete Branches
+```
+# Delete a local branch
+git branch -d feature-branch-name
+
+# Force delete (if branch not merged)
+git branch -D feature-branch-name
+
+# Delete a remote branch
+git push origin --delete feature-branch-name
+```
+
+### Merge Branches
+```
+# Switch to the branch you want to merge into (usually main)
+git checkout main
+
+# Merge the feature branch into main
+git merge feature-branch-name
+
+# After merging you have to push
+git push origin main
+```
