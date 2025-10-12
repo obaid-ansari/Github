@@ -1,15 +1,18 @@
-# Github Commands
-Here are some useful Git and GitHub commands for managing your workflow, including pushing changes and merging code.
-### Checking and Configuring
-```
-git config --global user.name "name"
-git config --global user.email "email"
-git config --global --list
-```
+# 🧑‍💻 GitHub Commands
 
-### Push Code to GitHub
+Here are some useful Git and GitHub commands for managing your workflow — including configuring Git, pushing changes, and merging branches.
+
+---
+
+## ⚙️ Checking and Configuring
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+git config --global --list        # Verify configuration
 ```
-# Initialize a Git repository
+## 🚀 Push Code to GitHub
+```bash
+# Initialize a new Git repository
 git init
 
 # Add all files to staging
@@ -22,22 +25,22 @@ git commit -m "Initial commit"
 git remote add origin https://github.com/your-username/your-repo-name.git
 
 # Push your code to the main branch
-git push origin main
+git push -u origin main
+```
+## 🔧 Useful Git Commands
+```bash
+git status         # Check the current status of your repository
+git log            # View commit history
+git log --oneline  # View concise commit history
+git branch         # List all branches
+git checkout       # Switch branches
+git remote -v      # Show remote URLs
 
+# Change or update the remote origin URL
+git remote set-url origin https://github.com/your-username/your-repo-name.git
 ```
-### Useful Git Commands
-```
-git status        # Check the current status of your repository
-git log           # View commit history
-git branch        # List all branches
-git checkout      # Switch branches
-git merge         # Merge branches
-# Reset/Change the Remote Origin URL
-git remote set-url origin git@github.com:yourusername/your-repo.git
-```
-
-### Create and Switch Branches
-```
+## 🌿 Create and Switch Branches
+```bash
 # Create a new branch
 git branch feature-branch-name
 
@@ -47,27 +50,37 @@ git checkout feature-branch-name
 # Create and switch in one command
 git checkout -b feature-branch-name
 ```
-
-### Delete Branches
-```
+## 🗑️ Delete Branches
+```bash
 # Delete a local branch
 git branch -d feature-branch-name
 
-# Force delete (if branch not merged)
+# Force delete (if not merged)
 git branch -D feature-branch-name
 
 # Delete a remote branch
 git push origin --delete feature-branch-name
 ```
 
-### Merge Branches
-```
+## 🔁 Merge Branches
+```bash
 # Switch to the branch you want to merge into (usually main)
 git checkout main
 
 # Merge the feature branch into main
 git merge feature-branch-name
 
-# After merging you have to push
+# Push the updated main branch to GitHub
 git push origin main
+```
+
+## 🌐 Clone & Undo Changes
+```bash
+git clone <repo_url>          # Clone a repository from GitHub
+
+git restore --staged .        # Unstage all files (keep changes)
+git restore .                 # Discard all local changes
+
+git log --oneline             # Check commit history
+git reset --soft HEAD~1       # Undo last commit (keep changes staged)
 ```
