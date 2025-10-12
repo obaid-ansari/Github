@@ -22,7 +22,7 @@ git commit -m "Initial commit"
 git remote add origin https://github.com/your-username/your-repo-name.git
 
 # Push your code to the main branch
-git push -u origin main
+git push origin main
 
 ```
 ### Useful Git Commands
@@ -32,5 +32,6 @@ git log           # View commit history
 git branch        # List all branches
 git checkout      # Switch branches
 git merge         # Merge branches
+# Reset/Change the Remote Origin URL
+git remote set-url origin git@github.com:yourusername/your-repo.git
 ```
-
