@@ -37,8 +37,10 @@ git push -u origin main
 ## 🔧 Useful Git Commands
 ```bash
 git status         # Check the current status of your repository
+git status -s
 git log            # View commit history
 git log --oneline  # View concise commit history
+git log --oneline --graph
 git branch         # List all branches
 git checkout       # Switch branches
 git remote -v      # Show remote URLs
