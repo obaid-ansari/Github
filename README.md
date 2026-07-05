@@ -11,7 +11,7 @@ git config --global user.email "your-email@example.com"
 git config --global --list        # Verify configuration
 ```
 
-## ⚙️ Checking and Configuring
+## ⚙️ File Status
 
 ### U - Untracked
 ### A - Staged
