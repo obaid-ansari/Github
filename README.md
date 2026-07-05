@@ -10,6 +10,12 @@ git config --global user.name "Your Name"
 git config --global user.email "your-email@example.com"
 git config --global --list        # Verify configuration
 ```
+
+## ⚙️ Checking and Configuring
+U - Untracked
+M - Modified
+A - Staged
+
 ## 🚀 Push Code to GitHub
 ```bash
 # Initialize a new Git repository
