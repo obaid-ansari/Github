@@ -14,8 +14,8 @@ git config --global --list        # Verify configuration
 ## ⚙️ Checking and Configuring
 
 ### U - Untracked
-### M - Modified
 ### A - Staged
+### M - Modified
 
 ## 🚀 Push Code to GitHub
 ```bash
