@@ -90,6 +90,5 @@ git clone <repo_url>          # Clone a repository from GitHub
 git restore --staged .        # Unstage all files (keep changes)
 git restore .                 # Discard all local changes
 
-git log --oneline             # Check commit history
 git reset --soft HEAD~1       # Undo last commit (keep changes staged)
 ```
