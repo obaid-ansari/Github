@@ -92,3 +92,340 @@ git restore .                 # Discard all local changes
 
 git reset --soft HEAD~1       # Undo last commit (keep changes staged)
 ```
+
+```
+```
+# 📝 Git & GitHub Company Workflow Notes
+
+## 1️⃣ Clone Company Repository
+
+### Situation
+
+I joined a company and received the repository link.
+
+### Commands
+
+```bash
+git clone <repo-link>
+cd <project-folder>
+git branch -a
+git checkout develop
+git pull origin develop
+```
+
+### What each command does
+
+* `git clone` → Downloads the project from GitHub.
+* `cd` → Opens the project folder.
+* `git branch -a` → Shows all local and remote branches.
+* `git checkout develop` → Switches to the `develop` branch.
+* `git pull origin develop` → Gets the latest code from `develop`.
+
+---
+
+# 2️⃣ Create a New Feature Branch
+
+### Situation
+
+Manager says:
+
+> "Create a CTA button."
+
+### Commands
+
+```bash
+git status
+```
+
+or
+
+```bash
+git branch
+```
+
+Check that you are on the `develop` branch.
+
+Then create a feature branch:
+
+```bash
+git checkout -b cta/button
+```
+
+### Meaning
+
+* Creates a new branch.
+* Switches to that branch.
+* The new branch starts from the latest `develop`.
+
+---
+
+# 3️⃣ Finish Your Work
+
+### Stage files
+
+```bash
+git add src/components/Button.vue
+```
+
+or
+
+```bash
+git add .
+```
+
+> Stage only the files you want to commit.
+
+---
+
+### Commit
+
+```bash
+git commit -m "feat(cta): add CTA button"
+```
+
+Meaning:
+Save your changes in your local Git history.
+
+---
+
+### Push
+
+```bash
+git push origin cta/button
+```
+
+Meaning:
+Upload your branch to GitHub.
+
+---
+
+### Create Pull Request
+
+Create a PR from
+
+```
+cta/button
+        ↓
+develop
+```
+
+---
+
+# 4️⃣ Develop Updated (My Work Is NOT Committed)
+
+### Situation
+
+* Working on `cta/button`
+* Someone updated `develop`
+* My code is **not committed**
+
+### Commands
+
+```bash
+git stash
+git checkout develop
+git pull origin develop
+git checkout cta/button
+git stash apply
+git add .
+git commit -m "feat(cta): add CTA button"
+git push origin cta/button
+```
+
+### Why?
+
+* `git stash` → Save temporary work.
+* Pull latest develop.
+* Return to feature branch.
+* Restore work.
+* Commit and push.
+
+---
+
+# 5️⃣ Develop Updated (My Work Is Already Committed)
+
+### Situation
+
+✅ Code added
+
+✅ Code committed
+
+❌ Not pushed
+
+Someone updated `develop`.
+
+### Commands
+
+```bash
+git checkout develop
+git pull origin develop
+git checkout cta/button
+git merge develop
+git push origin cta/button
+```
+
+OR
+
+```bash
+git checkout develop
+git pull origin develop
+git checkout cta/button
+git rebase develop
+git push origin cta/button
+```
+
+### Important
+
+If your work is already committed,
+
+❌ Don't use `git stash`.
+
+Use **Merge** or **Rebase**.
+
+---
+
+# 6️⃣ When Should I Use `git stash`?
+
+### Case 1
+
+```
+Code written
+
+❌ add
+❌ commit
+```
+
+Use
+
+```bash
+git stash
+```
+
+---
+
+### Case 2
+
+```
+Code written
+
+✅ add
+❌ commit
+```
+
+Use
+
+```bash
+git stash
+```
+
+---
+
+### Case 3
+
+```
+Code written
+
+✅ add
+✅ commit
+```
+
+Do **NOT** use
+
+```bash
+git stash
+```
+
+Instead use
+
+```bash
+git merge develop
+```
+
+or
+
+```bash
+git rebase develop
+```
+
+---
+
+# 📌 Quick Cheat Sheet
+
+| Situation            | Command                                     |
+| -------------------- | ------------------------------------------- |
+| Clone project        | `git clone`                                 |
+| Latest develop       | `git pull origin develop`                   |
+| New feature branch   | `git checkout -b feature/name`              |
+| Stage changes        | `git add .`                                 |
+| Commit               | `git commit -m "message"`                   |
+| Push                 | `git push origin branch-name`               |
+| Save temporary work  | `git stash`                                 |
+| Restore work         | `git stash apply`                           |
+| Bring latest develop | `git merge develop` or `git rebase develop` |
+| Raise PR             | GitHub UI                                   |
+
+---
+
+# ⭐ Golden Rule
+
+```
+Code NOT committed
+        ↓
+Use git stash
+
+-------------------------
+
+Code committed
+        ↓
+Use git merge
+or
+git rebase
+
+-------------------------
+
+Push not done?
+No problem.
+
+-------------------------
+
+Push done?
+Continue normal workflow.
+```
+
+---
+
+# 🔄 Typical Company Workflow
+
+```
+Clone Repository
+        │
+        ▼
+Checkout Develop
+        │
+        ▼
+Pull Latest Code
+        │
+        ▼
+Create Feature Branch
+        │
+        ▼
+Write Code
+        │
+        ▼
+git add
+        │
+        ▼
+git commit
+        │
+        ▼
+git push
+        │
+        ▼
+Create Pull Request
+        │
+        ▼
+Code Review
+        │
+        ▼
+Merge into Develop
+```
