@@ -429,3 +429,97 @@ Code Review
         ▼
 Merge into Develop
 ```
+
+# 7️⃣ Develop Updated After I Already Pushed My Branch
+
+## Situation
+
+* ✅ Code completed
+* ✅ `git add`
+* ✅ `git commit`
+* ✅ `git push`
+* ❌ PR not created yet
+
+Meanwhile, someone merged new code into the `develop` branch.
+
+### Commands
+
+```bash
+git checkout develop
+git pull origin develop
+
+git checkout cta/button
+
+# Option 1 (Most Common)
+git merge develop
+
+# OR Option 2 (If your team uses rebase)
+git rebase develop
+```
+
+### Push Again
+
+If you used **merge**:
+
+```bash
+git push origin cta/button
+```
+
+If you used **rebase**:
+
+```bash
+git push --force-with-lease origin cta/button
+```
+
+### Then
+
+Create the Pull Request to the `develop` branch.
+
+---
+
+## Why?
+
+* Get the latest changes from `develop`.
+* Make sure your feature branch is up to date.
+* Resolve any conflicts before creating the PR.
+* Reduce review and merge issues.
+
+---
+
+## Flow Diagram
+
+```text
+My Feature Branch
+        │
+        ▼
+Already Pushed
+        │
+        ▼
+Develop Gets New Commits
+        │
+        ▼
+Checkout Develop
+        │
+        ▼
+Pull Latest Develop
+        │
+        ▼
+Checkout Feature Branch
+        │
+        ▼
+Merge Develop
+(or Rebase Develop)
+        │
+        ▼
+Push Again
+        │
+        ▼
+Create Pull Request
+```
+
+## Remember
+
+* ✅ Already committed → No `git stash`
+* ✅ Already pushed → Just sync with `develop`
+* ✅ Merge or Rebase, then push again
+* ✅ Finally create the Pull Request
