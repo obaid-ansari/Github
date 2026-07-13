@@ -109,8 +109,8 @@ I joined a company and received the repository link.
 git clone <repo-link>
 cd <project-folder>
 git branch -a
-git checkout develop
-git pull origin develop
+git checkout main-branch
+git pull origin main-branch
 ```
 
 ### What each command does
@@ -118,8 +118,8 @@ git pull origin develop
 * `git clone` → Downloads the project from GitHub.
 * `cd` → Opens the project folder.
 * `git branch -a` → Shows all local and remote branches.
-* `git checkout develop` → Switches to the `develop` branch.
-* `git pull origin develop` → Gets the latest code from `develop`.
+* `git checkout main-branch` → Switches to the `main-branch` branch.
+* `git pull origin main-branch` → Gets the latest code from `main-branch`.
 
 ---
 
@@ -134,16 +134,10 @@ Manager says:
 ### Commands
 
 ```bash
-git status
-```
-
-or
-
-```bash
 git branch
 ```
 
-Check that you are on the `develop` branch.
+Check that you are on the `main-branch` branch.
 
 Then create a feature branch:
 
@@ -155,7 +149,7 @@ git checkout -b cta/button
 
 * Creates a new branch.
 * Switches to that branch.
-* The new branch starts from the latest `develop`.
+* The new branch starts from the latest `main-branch`.
 
 ---
 
@@ -206,25 +200,25 @@ Create a PR from
 ```
 cta/button
         ↓
-develop
+main-branch
 ```
 
 ---
 
-# 4️⃣ Develop Updated (My Work Is NOT Committed)
+# 4️⃣ main-branch Updated (My Work Is NOT Committed)
 
 ### Situation
 
 * Working on `cta/button`
-* Someone updated `develop`
+* Someone updated `main-branch`
 * My code is **not committed**
 
 ### Commands
 
 ```bash
 git stash
-git checkout develop
-git pull origin develop
+git checkout main-branch
+git pull origin main-branch
 git checkout cta/button
 git stash apply
 git add .
@@ -235,14 +229,14 @@ git push origin cta/button
 ### Why?
 
 * `git stash` → Save temporary work.
-* Pull latest develop.
+* Pull latest main-branch.
 * Return to feature branch.
 * Restore work.
 * Commit and push.
 
 ---
 
-# 5️⃣ Develop Updated (My Work Is Already Committed)
+# 5️⃣ main-branch Updated (My Work Is Already Committed)
 
 ### Situation
 
@@ -252,25 +246,25 @@ git push origin cta/button
 
 ❌ Not pushed
 
-Someone updated `develop`.
+Someone updated `main-branch`.
 
 ### Commands
 
 ```bash
-git checkout develop
-git pull origin develop
+git checkout main-branch
+git pull origin main-branch
 git checkout cta/button
-git merge develop
+git merge main-branch
 git push origin cta/button
 ```
 
 OR
 
 ```bash
-git checkout develop
-git pull origin develop
+git checkout main-branch
+git pull origin main-branch
 git checkout cta/button
-git rebase develop
+git rebase main-branch
 git push origin cta/button
 ```
 
@@ -338,13 +332,13 @@ git stash
 Instead use
 
 ```bash
-git merge develop
+git merge main-branch
 ```
 
 or
 
 ```bash
-git rebase develop
+git rebase main-branch
 ```
 
 ---
@@ -354,14 +348,14 @@ git rebase develop
 | Situation            | Command                                     |
 | -------------------- | ------------------------------------------- |
 | Clone project        | `git clone`                                 |
-| Latest develop       | `git pull origin develop`                   |
+| Latest main-branch       | `git pull origin main-branch`                   |
 | New feature branch   | `git checkout -b feature/name`              |
 | Stage changes        | `git add .`                                 |
 | Commit               | `git commit -m "message"`                   |
 | Push                 | `git push origin branch-name`               |
 | Save temporary work  | `git stash`                                 |
 | Restore work         | `git stash apply`                           |
-| Bring latest develop | `git merge develop` or `git rebase develop` |
+| Bring latest main-branch | `git merge main-branch` or `git rebase main-branch` |
 | Raise PR             | GitHub UI                                   |
 
 ---
@@ -392,45 +386,7 @@ Push done?
 Continue normal workflow.
 ```
 
----
-
-# 🔄 Typical Company Workflow
-
-```
-Clone Repository
-        │
-        ▼
-Checkout Develop
-        │
-        ▼
-Pull Latest Code
-        │
-        ▼
-Create Feature Branch
-        │
-        ▼
-Write Code
-        │
-        ▼
-git add
-        │
-        ▼
-git commit
-        │
-        ▼
-git push
-        │
-        ▼
-Create Pull Request
-        │
-        ▼
-Code Review
-        │
-        ▼
-Merge into Develop
-```
-
-# 7️⃣ Develop Updated After I Already Pushed My Branch
+# 7️⃣ main-branch Updated After I Already Pushed My Branch
 
 ## Situation
 
@@ -440,21 +396,21 @@ Merge into Develop
 * ✅ `git push`
 * ❌ PR not created yet
 
-Meanwhile, someone merged new code into the `develop` branch.
+Meanwhile, someone merged new code into the `main-branch` branch.
 
 ### Commands
 
 ```bash
-git checkout develop
-git pull origin develop
+git checkout main-branch
+git pull origin main-branch
 
 git checkout cta/button
 
 # Option 1 (Most Common)
-git merge develop
+git merge main-branch
 
 # OR Option 2 (If your team uses rebase)
-git rebase develop
+git rebase main-branch
 ```
 
 ### Push Again
@@ -473,53 +429,20 @@ git push --force-with-lease origin cta/button
 
 ### Then
 
-Create the Pull Request to the `develop` branch.
+Create the Pull Request to the `main-branch` branch.
 
 ---
 
 ## Why?
 
-* Get the latest changes from `develop`.
+* Get the latest changes from `main-branch`.
 * Make sure your feature branch is up to date.
 * Resolve any conflicts before creating the PR.
 * Reduce review and merge issues.
 
----
-
-## Flow Diagram
-
-```text
-My Feature Branch
-        │
-        ▼
-Already Pushed
-        │
-        ▼
-Develop Gets New Commits
-        │
-        ▼
-Checkout Develop
-        │
-        ▼
-Pull Latest Develop
-        │
-        ▼
-Checkout Feature Branch
-        │
-        ▼
-Merge Develop
-(or Rebase Develop)
-        │
-        ▼
-Push Again
-        │
-        ▼
-Create Pull Request
-```
-
 ## Remember
 
 * ✅ Already committed → No `git stash`
-* ✅ Already pushed → Just sync with `develop`
+* ✅ Already pushed → Just sync with `main-branch`
 * ✅ Merge or Rebase, then push again
 * ✅ Finally create the Pull Request
